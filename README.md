@@ -1,3 +1,3 @@
 # Projeto-Cris
 
-https://devcrix.github.io/Projeto-Cris/
+https://devcrix.github.io/Projeto-Cris/index.html
