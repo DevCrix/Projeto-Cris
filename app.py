@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, flsh
+from flask import Flask, render_template, redirect, request, flash
 from flask_mail import Mail, Message
 from config import email,senha
 
@@ -6,12 +6,12 @@ app = Flask(__name__)
 app.secret_key = 'devcrix'
 
 mail_settings = {
-    "MAIL_SERVER": 'smtp.gmail.com'
+    "MAIL_SERVER": 'smtp.gmail.com',
     "MAIL_PORT": 465,
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
     "MAIL_USERNAME": email,
-    "Mail_PASSWORD": senha
+    "MAIL_PASSWORD": senha
 }
 
 app.config.update(mail_settings)
@@ -20,8 +20,8 @@ mail = Mail(app)
 
 class Contato: 
     def __init__(self, nome, email, mensagem):
-        self.nome = nome,
-        self.email = email,
+        self.nome = nome
+        self.email = email
         self.mensagem = mensagem
 
 @app.route('/')
@@ -39,8 +39,8 @@ def send():
 
         msg = Message(
             subject = f'{formContato.nome} te enviou uma mensagem no portfólio',
-            sender = app.config.ger("MAIL_USERNAME"),
-            recipients= ['devcrix2001@gmail.com', app.config.ger("MAIL_USERNAME")],
+            sender = app.config.get("MAIL_USERNAME"),
+            recipients= ['devcrix2001@gmail.com', app.config.get("MAIL_USERNAME")],
             body = f'''
 
             {formContato.nome} com o e-mail {formContato.email}, te enviou a seguinte mensagem:
